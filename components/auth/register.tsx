@@ -11,6 +11,7 @@ import {
   Briefcase, Heart, Brain, Dumbbell, DollarSign, MessageCircle,
 } from "lucide-react";
 
+
 // ── Image compressor (WebP, client-side) ─────────────────────────────────────
 async function compressToWebP(file: File, maxWidth = 400, quality = 0.85): Promise<Blob> {
   return new Promise((resolve, reject) => {
@@ -237,11 +238,14 @@ export default function SignUpPage() {
 
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
-            <Sparkles size={18} className="text-white"/>
-          </div>
-          <span className="font-extrabold text-gray-900 text-xl tracking-tight">CoachLife</span>
-        </div>
+              <img
+                                                          className="rounded-full"
+                                                      
+                                                          src="/logo.png"
+                                                          alt="Logo"
+                                                          width={32}
+                                                          height={32}
+                                                        /></div>
 
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-xl shadow-gray-100 border border-gray-100 overflow-hidden">

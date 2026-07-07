@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 import { Eye, EyeOff, ArrowRight, Sparkles, Star, Shield, Users, TrendingUp } from "lucide-react";
-
+import Image from "next/image";
 // ── Testimonial data ────────────────────────────────────────────────────────
 const testimonials = [
   { name: "Sarah M.", role: "Marketing Director", text: "My coach helped me land a VP role in 4 months. Completely life-changing.", avatar: "SM", color: "bg-violet-100 text-violet-700" },
@@ -109,10 +109,14 @@ export default function SignInPage() {
 
           {/* Logo */}
           <div className="relative z-10 flex items-center gap-3 mb-auto">
-            <div className="w-10 h-10 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
-              <Sparkles size={20} className="text-white"/>
-            </div>
-            <span className="text-white font-bold text-xl tracking-tight">CoachLife</span>
+             <Image
+                                                className="rounded-full"
+                                            
+                                                src="/logo.png"
+                                                alt="Logo"
+                                                width={32}
+                                                height={32}
+                                              />
           </div>
 
           {/* Floating coach cards */}
@@ -179,10 +183,14 @@ export default function SignInPage() {
 
             {/* Mobile logo */}
             <div className="lg:hidden flex items-center gap-2 mb-8">
-              <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center">
-                <Sparkles size={16} className="text-white"/>
-              </div>
-              <span className="font-bold text-gray-900 text-lg">CoachLife</span>
+                  <Image
+                                                className="rounded-full"
+                                            
+                                                src="/logo.png"
+                                                alt="Logo"
+                                                width={32}
+                                                height={32}
+                                              />
             </div>
 
             {redirecting ? (

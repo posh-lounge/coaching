@@ -7,7 +7,7 @@ import {
   SlidersHorizontal, Clock,
 } from "lucide-react";
 import { useMarketplace, useCoachPublicProfile, useBuyPackage } from "@/lib/api/v1/hooks";
-
+import Image from "next/image";
 const fmt = (n: number) => `${Number(n || 0).toLocaleString()} RWF`;
 const ALL_SPECS = ["Career & Leadership","Executive Coaching","Life Coaching","Business Strategy","Mindset & Confidence","Communication","Productivity","Finance & Wealth","Health & Fitness","Team & Culture","Relationships","Purpose & Values"];
 const SORT_OPTS = [{v:"rating",l:"Top rated"},{v:"sessions",l:"Most sessions"},{v:"rate_asc",l:"Price: low"},{v:"rate_desc",l:"Price: high"},{v:"newest",l:"Newest"}];
@@ -202,8 +202,14 @@ export default function MarketplacePage() {
       <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2 shrink-0 mr-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-xl flex items-center justify-center"><Sparkles size={15} className="text-white"/></div>
-            <span className="font-extrabold text-gray-900 text-lg hidden sm:block">CoachLife</span>
+               <Image
+                                      className="rounded-full"
+                                  
+                                      src="/logo.png"
+                                      alt="Logo"
+                                      width={32}
+                                      height={32}
+                                    />
           </Link>
           <div className="relative flex-1 max-w-2xl">
             <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"/>
