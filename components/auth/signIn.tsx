@@ -109,14 +109,13 @@ export default function SignInPage() {
 
           {/* Logo */}
           <div className="relative z-10 flex items-center gap-3 mb-auto">
-             <Image
-                                                className="rounded-full"
-                                            
-                                                src="/logo.png"
-                                                alt="Logo"
-                                                width={32}
-                                                height={32}
-                                              />
+                        <img
+                                      className="rounded-full width-full h-10 object-cover"
+                                  
+                                      src="/logo.png"
+                                      alt="Logo"
+                                    
+                                    />
           </div>
 
           {/* Floating coach cards */}
@@ -183,14 +182,13 @@ export default function SignInPage() {
 
             {/* Mobile logo */}
             <div className="lg:hidden flex items-center gap-2 mb-8">
-                  <Image
-                                                className="rounded-full"
-                                            
-                                                src="/logo.png"
-                                                alt="Logo"
-                                                width={32}
-                                                height={32}
-                                              />
+                              <img
+                                      className="rounded-full width-full h-10 object-cover"
+                                  
+                                      src="/logo.png"
+                                      alt="Logo"
+                                    
+                                    />
             </div>
 
             {redirecting ? (

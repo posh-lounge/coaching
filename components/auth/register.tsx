@@ -238,14 +238,13 @@ export default function SignUpPage() {
 
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
-              <img
-                                                          className="rounded-full"
-                                                      
-                                                          src="/logo.png"
-                                                          alt="Logo"
-                                                          width={32}
-                                                          height={32}
-                                                        /></div>
+                         <img
+                                      className="rounded-full width-full h-10 object-cover"
+                                  
+                                      src="/logo.png"
+                                      alt="Logo"
+                                    
+                                    /></div>
 
         {/* Card */}
         <div className="bg-white rounded-3xl shadow-xl shadow-gray-100 border border-gray-100 overflow-hidden">

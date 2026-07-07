@@ -202,13 +202,12 @@ export default function MarketplacePage() {
       <div className="bg-white border-b border-gray-200 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-3">
           <Link href="/" className="flex items-center gap-2 shrink-0 mr-3">
-               <Image
-                                      className="rounded-full"
+               <img
+                                      className="rounded-full width-full h-10 object-cover"
                                   
                                       src="/logo.png"
                                       alt="Logo"
-                                      width={32}
-                                      height={32}
+                                    
                                     />
           </Link>
           <div className="relative flex-1 max-w-2xl">

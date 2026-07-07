@@ -23,7 +23,7 @@ const initialState: DataState = {
 };
 export const fetchSession = createAsyncThunk('data/fetchData', async () => {
   try {
-    const response = await fetch('/api/main/support', {
+    const response = await fetch('/api/coaching/support', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
