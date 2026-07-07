@@ -12,7 +12,7 @@ export async function phpProxy(phpEndpoint: string, request: Request, extraBody:
     }
     const body = await request.json().catch(() => ({}));
     const payload = { userId: session.user.id, ...body, ...extraBody };
-    const res = await fetch(`${process.env.API_URL}/v1/${phpEndpoint}`, {
+    const res = await fetch(`${process.env.API_URL}/${phpEndpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.API_KEY}` },
       body: JSON.stringify(payload),
