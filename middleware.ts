@@ -1,64 +1,95 @@
-import { NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
-import type { NextRequest } from 'next/server';
+// middleware.ts
+
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
 
   const currentPath = req.nextUrl.pathname;
 
-  // Handle root path `/`
-  if (currentPath === '/') {
-    if (token && token.role === 'admin') {
-      // Redirect to `/admin` if user is logged in and has the admin role
-      return NextResponse.redirect(new URL('/admin', req.url));
-    }else if (token && token.role === 'coach') {
-      // Redirect to `/coach` if user is logged in and has the coach role
-      return NextResponse.redirect(new URL('/coach', req.url));
-    }else if (token && token.role === 'coachee') {
-      // Redirect to `/coachee` if user is logged in and has the coachee role
-      return NextResponse.redirect(new URL('/coachee', req.url));
-    }else if (token && token.role === 'other') {
-      // Redirect to `/other` if user is logged in and has the other role
-      return NextResponse.redirect(new URL('/other', req.url));
+ 
+
+  // Handle root "/"
+  if (currentPath === "/") {
+    if (!token) {
+      return NextResponse.next();
     }
-    // Allow unauthenticated users to remain on `/`
-    return NextResponse.next();
+
+    switch (token.role) {
+      case "admin":
+        return NextResponse.redirect(new URL("/admin", req.url));
+
+      case "coach":
+        return NextResponse.redirect(new URL("/coach", req.url));
+
+      case "coachee":
+        return NextResponse.redirect(new URL("/coachee", req.url));
+
+      case "other":
+        return NextResponse.redirect(new URL("/other", req.url));
+
+      default:
+        return NextResponse.next();
+    }
   }
 
-  // Handle protected `/dashboard` paths
-  if (currentPath.startsWith('/admin')) {
-    if (!token || token.role !== 'admin') {
-      // Redirect to `/` if no valid token or wrong role
-      return NextResponse.redirect(new URL('/', req.url));
-    }
-  }
+  // Protected routes
+  const rolePaths = {
+    "/admin": "admin",
+    "/coach": "coach",
+    "/coachee": "coachee",
+    "/other": "other",
+  };
 
-    // Handle protected `/dashboard` paths
-    if (currentPath.startsWith('/coach')) {
-      if (!token || token.role !== 'coach') {
-        // Redirect to `/` if no valid token or wrong role
-        return NextResponse.redirect(new URL('/', req.url));
-      }
-    }
-
-
+  for (const [path, requiredRole] of Object.entries(rolePaths)) {
     
-    // Handle protected `/dashboard` paths
-    if (currentPath.startsWith('/coachee')) {
-      if (!token || token.role !== 'coachee') {
-        // Redirect to `/` if no valid token or wrong role
-        return NextResponse.redirect(new URL('/', req.url));
+    // Exact match OR child route match
+    if (
+      currentPath === path ||
+      currentPath.startsWith(`${path}/`)
+    ) {
+
+      // No authentication
+      if (!token) {
+        return NextResponse.redirect(
+          new URL("/", req.url)
+        );
       }
+
+      // Wrong role
+      if (token.role !== requiredRole) {
+
+        console.log("[middleware] Wrong role:", {
+          currentPath,
+          userRole: token.role,
+          requiredRole,
+          redirect: `/${token.role}`,
+        });
+
+        return NextResponse.redirect(
+          new URL(`/${token.role}`, req.url)
+        );
+      }
+
+      break;
     }
+  }
 
-
-
-
-  // Allow all other requests to proceed
   return NextResponse.next();
 }
 
+
 export const config = {
-  matcher: ['/', '/admin/:path*','/coach/:path*','/coachee/:path*'], // Apply middleware to `/` and `/dashboard` routes
+  matcher: [
+    "/",
+    "/admin/:path*",
+    "/coach/:path*",
+    "/coachee/:path*",
+    "/other/:path*",
+  ],
 };
