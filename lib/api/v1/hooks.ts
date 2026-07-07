@@ -96,7 +96,7 @@ export interface GoalUpdate {
 
 export interface Message {
   msg_id: number; rel_id: number; sender_id: string;
-  firstname: string; lastname: string; content: string;
+  full_name: string;  content: string;
   msg_type: string; is_read: number; created_at: string;
 }
 

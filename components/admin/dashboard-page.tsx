@@ -130,7 +130,7 @@ export default function AdminDashboard() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1"><span className={`text-xs px-2 py-0.5 rounded-full font-medium capitalize ${d.status === "open" ? "bg-red-50 text-red-600" : "bg-amber-50 text-amber-600"}`}>{d.status}</span><span className="text-xs text-gray-400 capitalize">{d.type}</span></div>
                     <h3 className="font-bold text-gray-900">{d.title}</h3>
-                    <p className="text-sm text-gray-500">{d.firstname} {d.lastname} · {d.email}</p>
+                    <p className="text-sm text-gray-500">{d.full_name} · {d.email}</p>
                     <p className="text-sm text-gray-600 mt-2">{d.description}</p>
                   </div>
                   <div className="flex gap-2 shrink-0">

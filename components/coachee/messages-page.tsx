@@ -102,7 +102,7 @@ export default function MessagesPage({ role }: Props) {
                 <React.Fragment key={m.msg_id}>
                   {showDate && <div className="flex items-center gap-3 my-4"><div className="flex-1 h-px bg-gray-200"/><span className="text-xs text-gray-400 whitespace-nowrap">{new Date(m.created_at).toLocaleDateString("en-US", { weekday:"short",month:"short",day:"numeric" })}</span><div className="flex-1 h-px bg-gray-200"/></div>}
                   <div className={`flex items-end gap-2 ${mine ? "flex-row-reverse" : ""}`}>
-                    <Avatar name={m.firstname} size={8}/>
+                    <Avatar name={m.full_name} size={8}/>
                     <div className={`max-w-xs lg:max-w-md ${mine ? "items-end" : "items-start"} flex flex-col gap-1`}>
                       <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm ${mine ? "bg-indigo-600 text-white rounded-br-sm" : "bg-white text-gray-900 border border-gray-200 rounded-bl-sm"}`}>
                         {m.content}
